@@ -1,10 +1,21 @@
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 
 const socialLinks = [
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
+  {
+    icon: Facebook,
+    href: "https://www.facebook.com/jainshreedigitalpvtltd/",
+    label: "Facebook",
+  },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/jainshreedigital/",
+    label: "Instagram",
+  },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/company/jainshreedigital/?originalSubdomain=in",
+    label: "LinkedIn",
+  },
 ];
 
 const quickLinks = [
@@ -83,7 +94,9 @@ export function Footer() {
             <ul className="space-y-3">
               {services.map((service, index) => (
                 <li key={index}>
-                  <span className="text-white/60 text-sm font-light hover:text-white transition-colors cursor-default">{service}</span>
+                  <span className="text-white/60 text-sm font-light hover:text-white transition-colors cursor-default">
+                    {service}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -95,7 +108,7 @@ export function Footer() {
               Contact
             </h4>
             <div className="space-y-3 text-sm text-white/60 font-light">
-              <p>+91 98765 43210</p>
+              <p>+91 96174 38100</p>
               <p>hello@jainshreedigital.com</p>
               <p>123 Business Hub</p>
               <p>Mumbai, India</p>

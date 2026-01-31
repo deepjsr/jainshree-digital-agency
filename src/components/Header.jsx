@@ -30,7 +30,7 @@ export function Header() {
               </span>
             </div>
             <span className="text-xl font-bold text-foreground font-heading tracking-tight">
-              Jainshree<span className="text-primary">.AGENCY</span>
+              Jainshree<span className="text-primary">.Digital</span>
             </span>
           </div>
 
@@ -90,12 +90,14 @@ export function Header() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <Button
-              size="sm"
-              className="rounded-full bg-primary hover:bg-primary/90 text-black font-semibold shadow-[0_0_20px_-5px_var(--color-primary)] hover:shadow-[0_0_30px_-5px_var(--color-primary)] transition-all"
-            >
-              Get a Quote
-            </Button>
+            <a href="tel:+919617438100">
+              <Button
+                size="sm"
+                className="rounded-full bg-primary hover:bg-primary/90 text-black font-semibold shadow-[0_0_20px_-5px_var(--color-primary)] hover:shadow-[0_0_30px_-5px_var(--color-primary)] transition-all"
+              >
+                Call Us
+              </Button>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -128,12 +130,14 @@ export function Header() {
                 </a>
               ))}
               <div className="flex flex-col gap-2 pt-4 border-t border-white/10">
-                <Button
-                  size="sm"
-                  className="w-full rounded-full bg-primary text-black font-bold"
-                >
-                  Get a Quote
-                </Button>
+                <a href="tel:+919617438100" className="w-full">
+                  <Button
+                    size="sm"
+                    className="w-full rounded-full bg-primary text-black font-bold"
+                  >
+                    Get a Quote
+                  </Button>
+                </a>
               </div>
             </div>
           </div>

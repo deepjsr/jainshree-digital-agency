@@ -6,8 +6,8 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Phone",
-    value: "+91 98765 43210",
-    href: "tel:+919876543210",
+    value: "+91 96174 38100",
+    href: "tel:+919617438100",
   },
   {
     icon: Mail,
@@ -31,11 +31,34 @@ export function ContactSection() {
     message: "",
   });
 
-  const handleSubmit = (e) => {
+  const [result, setResult] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("[v0] Form submitted:", formData);
-    alert("Thank you for your message! We will get back to you soon.");
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    setResult("Sending...");
+
+    const formDataObj = new FormData(e.target);
+    // IMPORTANT: Replace this with your Access Key from web3forms.com
+    formDataObj.append("access_key", "YOUR_ACCESS_KEY_HERE");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formDataObj,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setResult("Message sent successfully! We'll get back to you shortly.");
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        console.error("Error", data);
+        setResult(data.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      setResult("Something went wrong. Please check your connection.");
+    }
   };
 
   const handleChange = (e) => {
@@ -102,7 +125,7 @@ export function ContactSection() {
                 Call us directly and speak with our experts.
               </p>
               <a
-                href="tel:+919876543210"
+                href="tel:+919617438100"
                 className="w-full inline-flex items-center justify-center gap-2 bg-black text-primary hover:bg-black/80 rounded-full px-6 py-3 font-bold transition-colors"
               >
                 <Phone className="w-4 h-4" />
@@ -165,7 +188,7 @@ export function ContactSection() {
                       id="phone"
                       name="phone"
                       type="tel"
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 96174 38100"
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full bg-white/5 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary px-4 py-3 rounded-lg text-foreground placeholder:text-muted-foreground/50 transition-all outline-none"
@@ -196,6 +219,13 @@ export function ContactSection() {
                     <Send className="w-5 h-5" />
                     Send Message
                   </button>
+                  {result && (
+                    <p
+                      className={`text-center text-sm font-medium ${result.includes("success") ? "text-emerald-400" : "text-red-400"}`}
+                    >
+                      {result}
+                    </p>
+                  )}
                 </form>
               </div>
             </div>

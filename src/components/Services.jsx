@@ -7,6 +7,8 @@ import {
   Share2,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { Skeleton } from "./ui/skeleton";
 
 const services = [
   {
@@ -63,17 +65,24 @@ const item = {
 };
 
 export function ServicesSection() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section
       id="services"
       className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/5 pointer-events-none" />
-      
+
       <div className="mx-auto max-w-7xl relative z-10">
         {/* Section Header */}
         <div className="text-center mb-20">
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -81,22 +90,24 @@ export function ServicesSection() {
           >
             Our Services
           </motion.span>
-          <motion.h2 
-             initial={{ opacity: 0, y: 20 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             viewport={{ once: true }}
-             transition={{ delay: 0.1 }}
-             className="mt-4 text-4xl md:text-6xl font-bold text-foreground font-heading tracking-tight"
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="mt-4 text-4xl md:text-6xl font-bold text-foreground font-heading tracking-tight"
           >
             Redefining Success in the{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">Digital Space</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">
+              Digital Space
+            </span>
           </motion.h2>
-          <motion.p 
-             initial={{ opacity: 0, y: 20 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             viewport={{ once: true }}
-             transition={{ delay: 0.2 }}
-             className="mt-6 text-xl text-muted-foreground/80 max-w-2xl mx-auto font-light leading-relaxed"
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="mt-6 text-xl text-muted-foreground/80 max-w-2xl mx-auto font-light leading-relaxed"
           >
             We provide comprehensive digital solutions to help your business
             thrive in the modern marketplace.
@@ -104,34 +115,47 @@ export function ServicesSection() {
         </div>
 
         {/* Services Grid */}
-        <motion.div 
+        <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              variants={item}
-              className="group relative p-8 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-colors duration-500 overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              <div className="relative z-10">
-                <div className="w-14 h-14 bg-black/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 border border-white/10 group-hover:border-primary/50 shadow-inner">
-                  <service.icon className="w-7 h-7 text-primary group-hover:text-white transition-colors" />
+          {isLoading
+            ? // Skeleton Loading State
+              [...Array(6)].map((_, i) => (
+                <div
+                  key={i}
+                  className="p-8 bg-white/5 border border-white/10 rounded-2xl h-[300px] flex flex-col justify-start"
+                >
+                  <Skeleton className="w-14 h-14 rounded-xl mb-6" />
+                  <Skeleton className="h-8 w-3/4 mb-4" />
+                  <Skeleton className="h-4 w-full mb-2" />
+                  <Skeleton className="h-4 w-5/6" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-3 font-heading">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground group-hover:text-white/80 transition-colors leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+              ))
+            : services.map((service, index) => (
+                <motion.div
+                  key={index}
+                  variants={item}
+                  className="group relative p-8 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-colors duration-500 overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  <div className="relative z-10">
+                    <div className="w-14 h-14 bg-black/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 border border-white/10 group-hover:border-primary/50 shadow-inner">
+                      <service.icon className="w-7 h-7 text-primary group-hover:text-white transition-colors" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-foreground mb-3 font-heading">
+                      {service.title}
+                    </h3>
+                    <p className="text-muted-foreground group-hover:text-white/80 transition-colors leading-relaxed">
+                      {service.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
         </motion.div>
       </div>
     </section>

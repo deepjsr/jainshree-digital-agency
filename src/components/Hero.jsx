@@ -1,21 +1,25 @@
+import { useState, useEffect } from "react";
 import { ArrowRight, Users, Star } from "lucide-react";
 import { motion } from "framer-motion";
+import { Skeleton } from "./ui/skeleton";
 
 export default function Hero() {
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const container = {
-    hidden: { opacity: 0 },
+    hidden: {},
     show: {
-      opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.3,
+        delayChildren: 0.2,
       },
     },
   };
 
   const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    hidden: { y: 20 },
+    show: { y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   return (
@@ -24,11 +28,13 @@ export default function Hero() {
       className="relative min-h-screen flex items-center pt-24 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
       {/* Background Atmosphere */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] mix-blend-screen" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] mix-blend-screen" />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150" />
-      </div>
+      {mounted && (
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] mix-blend-screen" />
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] mix-blend-screen" />
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150" />
+        </div>
+      )}
 
       <div className="relative z-10 mx-auto max-w-7xl w-full">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -57,16 +63,10 @@ export default function Hero() {
             </motion.div>
 
             {/* Heading */}
-            <motion.h1
-              variants={item}
-              className="text-5xl md:text-7xl font-bold text-foreground leading-[0.9] text-balance tracking-tighter font-heading"
-            >
+            <h1 className="text-5xl md:text-7xl ...">
               Turning Ideas into <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">
-                Digital Legends
-              </span>
-            </motion.h1>
-
+              <span>Digital Legends</span>
+            </h1>
             {/* Description */}
             <motion.p
               variants={item}
@@ -117,13 +117,21 @@ export default function Hero() {
             className="relative lg:h-[600px] flex items-center justify-center"
           >
             {/* Abstract Composition */}
-            <div className="relative w-full h-full">
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-[2rem] transform rotate-3 blur-3xl" />
+            <div className="relative w-full h-full will-change-transform">
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-[2rem] transform rotate-3 blur-3xl opacity-60" />
               <div className="relative h-full w-full rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-[#0a0a0a]">
+                {!imgLoaded && (
+                  <Skeleton className="absolute inset-0 w-full h-full rounded-[2rem]" />
+                )}
                 <img
-                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80"
+                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80&fm=webp"
                   alt="Team"
-                  className="w-full h-full object-cover opacity-60 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700 hover:scale-105"
+                  width="800"
+                  height="1200"
+                  onLoad={() => setImgLoaded(true)}
+                  className={`w-full h-full object-cover mix-blend-luminosity hover:mix-blend-normal transition-all duration-700 hover:scale-105 ${imgLoaded ? "opacity-60" : "opacity-0"}`}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
 
