@@ -1,25 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ArrowRight, Users, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { Skeleton } from "./ui/skeleton";
 
 export default function Hero() {
   const [imgLoaded, setImgLoaded] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  const container = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
 
   const item = {
     hidden: { y: 20 },
-    show: { y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    show: {
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
   };
 
   return (
@@ -27,28 +19,16 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen flex items-center pt-24 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
-      {/* Background Atmosphere */}
-      {mounted && (
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] mix-blend-screen" />
-          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] mix-blend-screen" />
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150" />
-        </div>
-      )}
-
       <div className="relative z-10 mx-auto max-w-7xl w-full">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate="show"
-            className="space-y-8"
-          >
+          {/* LEFT CONTENT */}
+          <div className="space-y-8">
             {/* Badge */}
             <motion.div
               variants={item}
-              className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 shadow-sm"
+              initial="hidden"
+              animate="show"
+              className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 shadow-sm"
             >
               <div className="flex -space-x-2">
                 <div className="w-6 h-6 rounded-full bg-primary/20 border border-white/10 flex items-center justify-center">
@@ -57,43 +37,52 @@ export default function Hero() {
                 <div className="w-6 h-6 rounded-full bg-primary/30 border border-white/10" />
                 <div className="w-6 h-6 rounded-full bg-primary/40 border border-white/10" />
               </div>
-              <span className="text-sm font-medium text-white/90 font-sans tracking-wide">
+              <span className="text-sm font-medium text-white/90 tracking-wide">
                 100+ Happy Clients
               </span>
             </motion.div>
 
-            {/* Heading */}
-            <h1 className="text-5xl md:text-7xl ...">
+            {/* Heading (STATIC FOR FCP & SEO) */}
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[0.95]">
               Turning Ideas into <br />
-              <span>Digital Legends</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">
+                Digital Legends
+              </span>
             </h1>
+
             {/* Description */}
             <motion.p
               variants={item}
+              initial="hidden"
+              animate="show"
               className="text-lg md:text-xl text-muted-foreground/80 max-w-xl leading-relaxed font-light"
             >
               We create immersive digital experiences that defy expected norms.
-              Transform your brand with distinct aesthetics and motion-first
-              engineering.
+              Transform your brand with distinct aesthetics and
+              performance-first engineering.
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* CTA */}
             <motion.div
               variants={item}
+              initial="hidden"
+              animate="show"
               className="flex flex-col sm:flex-row gap-4"
             >
               <a
                 href="#contact"
-                className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary text-black font-bold text-lg hover:shadow-[0_0_40px_-10px_var(--color-primary)] transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary text-black font-bold text-lg hover:shadow-[0_0_40px_-10px_var(--color-primary)] transition-all duration-300"
               >
-                Start A Project
+                Get a Free Quote
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </motion.div>
 
-            {/* Stats */}
+            {/* Rating */}
             <motion.div
               variants={item}
+              initial="hidden"
+              animate="show"
               className="flex items-center gap-6 pt-4 border-t border-white/5"
             >
               <div className="flex items-center gap-1">
@@ -107,35 +96,34 @@ export default function Hero() {
                 industry leaders
               </span>
             </motion.div>
-          </motion.div>
+          </div>
 
-          {/* Right Content - Visual */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="relative lg:h-[600px] flex items-center justify-center"
-          >
-            {/* Abstract Composition */}
-            <div className="relative w-full h-full will-change-transform">
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-[2rem] transform rotate-3 blur-3xl opacity-60" />
+          {/* RIGHT VISUAL (DECORATIVE ONLY) */}
+          <div className="relative lg:h-[600px] flex items-center justify-center">
+            <div className="relative w-full h-full">
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-[2rem] rotate-3 blur-3xl opacity-60" />
+
               <div className="relative h-full w-full rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-[#0a0a0a]">
                 {!imgLoaded && (
                   <Skeleton className="absolute inset-0 w-full h-full rounded-[2rem]" />
                 )}
+
                 <img
                   src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80&fm=webp"
-                  alt="Team"
+                  alt="Team collaboration"
                   width="800"
                   height="1200"
-                  onLoad={() => setImgLoaded(true)}
-                  className={`w-full h-full object-cover mix-blend-luminosity hover:mix-blend-normal transition-all duration-700 hover:scale-105 ${imgLoaded ? "opacity-60" : "opacity-0"}`}
                   loading="lazy"
                   decoding="async"
+                  onLoad={() => setImgLoaded(true)}
+                  className={`w-full h-full object-cover transition-all duration-700 ${
+                    imgLoaded ? "opacity-60" : "opacity-0"
+                  }`}
                 />
+
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
 
-                {/* Floating Elements */}
+                {/* Floating Card */}
                 <motion.div
                   animate={{ y: [0, -20, 0] }}
                   transition={{
@@ -143,16 +131,14 @@ export default function Hero() {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="absolute top-10 right-10 p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl"
+                  className="absolute top-10 right-10 p-6 bg-black/40 border border-white/10 rounded-2xl"
                 >
-                  <p className="text-primary text-4xl font-heading font-bold">
-                    250+
-                  </p>
+                  <p className="text-primary text-4xl font-bold">250+</p>
                   <p className="text-sm text-white/60">Projects Delivered</p>
                 </motion.div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
