@@ -40,7 +40,7 @@ export function ContactSection() {
 
     const formDataObj = new FormData(e.target);
     // IMPORTANT: Replace this with your Access Key from web3forms.com
-    formDataObj.append("access_key", "YOUR_ACCESS_KEY_HERE");
+    formDataObj.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
