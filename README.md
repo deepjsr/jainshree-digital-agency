@@ -8,8 +8,8 @@ This project was developed as part of an assessment to demonstrate front-end ski
 
 ## 🔗 Live Demo
 
-👉 **Live URL:** https://<your-netlify-site>.netlify.app  
-👉 **Repository:** https://github.com/<your-username>/jainshree-landing
+👉 **Live URL:** https://[<your-netlify-site>.netlify.app](https://jainshree-digital.netlify.app/#home)  
+👉 **Repository:** https://github.com/deepjsr/jainshree-digital-agency.git
 
 ---
 
@@ -35,10 +35,12 @@ This project was developed as part of an assessment to demonstrate front-end ski
 
 ## 🛠️ Tech Stack
 
-- **React** (Vite)
-- **Tailwind CSS**
-- **Framer Motion** (animations)
-- **Lucide Icons**
+- **Frontend:** React (Vite)
+- **Styling:** CSS / Utility classes
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
+- **Build Tool:** Vite
+- **Deployment:** Netlify
 - **Netlify Forms** (contact form handling)
 - **WhatsApp Click-to-Chat**
 
@@ -46,14 +48,47 @@ This project was developed as part of an assessment to demonstrate front-end ski
 
 ## ⚡ Performance & Optimization
 
-The project is optimized for fast loading and good Lighthouse scores:
+**Build & Minification**
 
-- Lightweight React setup using Vite
-- No heavy UI libraries or templates
-- Optimized images (WebP where applicable)
-- Lazy loading for non-critical assets
-- Minimal JavaScript and CSS footprint
-- Clean component structure
+- Production build created using Vite
+
+- JavaScript and CSS minified via esbuild
+
+- Tree-shaking enabled to remove unused code
+
+- Source maps disabled in production to reduce bundle size
+
+**Bundle Optimization**
+
+- Manual chunk splitting for large dependencies:
+
+- React & React DOM
+
+- Framer Motion
+
+- Icon libraries
+
+- Improves caching and reduces initial load cost
+
+**Rendering Optimizations**
+
+- Static hero heading for faster First Contentful Paint (FCP)
+
+- Animations applied only to non-critical elements
+
+- Progressive rendering for visuals
+
+- Explicit image dimensions to prevent layout shifts
+
+**Image Optimization**
+
+- WebP image format
+
+- Lazy loading for non-critical images
+
+- Async image decoding
+
+- Skeleton loader for better perceived loading
 
 ---
 
@@ -133,16 +168,19 @@ npm run build
 
 ---
 
+📌 Notes
+
+Lighthouse scores may vary depending on animations and visual effects.
+
+The project prioritizes real-world UX and perceived performance over synthetic lab metrics.
+
+All code is original and custom-built (no templates used).
+
+---
+
 ## 👤 Author
 
 **Deep Jyoti Sarma**  
 Front-End Developer
 
 ---
-
-## ✅ Status
-
-✔ Core layout completed  
-✔ Responsive design  
-✔ WhatsApp & contact integration  
-✔ Ready for performance testing & final polish
