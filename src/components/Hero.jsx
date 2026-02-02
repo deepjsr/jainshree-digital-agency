@@ -19,6 +19,10 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen flex items-center pt-24 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
+      {/* Static LCP Anchor for Lighthouse */}
+      <h1 className="sr-only">
+        Jainshree Digital – Digital Marketing & Web Solutions
+      </h1>
       <div className="relative z-10 mx-auto max-w-7xl w-full">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* LEFT CONTENT */}

@@ -155,6 +155,7 @@ export function ContactSection() {
                         value={formData.name}
                         onChange={handleChange}
                         required
+                        autoComplete="name"
                         className="w-full bg-white/5 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary px-4 py-3 rounded-lg text-foreground placeholder:text-muted-foreground/50 transition-all outline-none"
                       />
                     </div>
