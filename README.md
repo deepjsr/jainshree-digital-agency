@@ -131,6 +131,7 @@ The contact form is configured to use **Web3Forms** for serverless email deliver
 
 ## 📂 Project Structure
 
+```
 src/
 ├── components/
 │ ├── Header.jsx
@@ -143,6 +144,8 @@ src/
 ├── styles/
 ├── App.jsx
 └── main.jsx
+
+```
 
 ---
 
@@ -182,5 +185,3 @@ All code is original and custom-built (no templates used).
 
 **Deep Jyoti Sarma**  
 Front-End Developer
-
----

@@ -109,9 +109,9 @@ export function Footer() {
             </h4>
             <div className="space-y-3 text-sm text-white/60 font-light">
               <p>+91 96174 38100</p>
-              <p>hello@jainshreedigital.com</p>
-              <p>123 Business Hub</p>
-              <p>Mumbai, India</p>
+              <p>jainshreedigital@gmail.com</p>
+              <p>1067, Ranjeet Hanuman Rd, Gumasta Nagar,</p>
+              <p>Sudama Nagar, Indore, Madhya Pradesh 452009, India</p>
             </div>
           </div>
         </div>

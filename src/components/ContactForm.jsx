@@ -12,13 +12,14 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    value: "hello@jainshreedigital.com",
-    href: "mailto:hello@jainshreedigital.com",
+    value: "jainshreedigital@gmail.com",
+    href: "mailto:jainshreedigital@gmail.com",
   },
   {
     icon: MapPin,
     title: "Address",
-    value: "123 Business Hub, Mumbai, India",
+    value:
+      "1067, Ranjeet Hanuman Rd, Gumasta Nagar, Sudama Nagar, Indore, Madhya Pradesh 452009, India",
     href: "#",
   },
 ];
